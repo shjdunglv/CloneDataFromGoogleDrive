@@ -8,9 +8,9 @@ function duplicate() {
     //var source = DriveApp.getFoldersByName(sourceFolder);
     //var target = parentFolder.createFolder(targetFolder);
     var target;
-    var name= DriveApp.getFolderById('1iNFOrJn0ncAJ8QKKUZeMDxMC6Ymmr0-p'); //Lấy id thư mục hiện tại
+    var name= DriveApp.getFolderById('1cuKw_AXC3onKUP-VIyw1B8Z-O8W220Qp'); //Lấy id thư mục hiện tại
     var source = name.getFolders(); //Thư mục cần copy
-    var parentFolder = DriveApp.getFolderById('1ZlrRA7PH8XleSNkTTbGniockbYrehhQe'); //Tìm thư mục đến
+    var parentFolder = DriveApp.getFolderById('1VbFIU2xqXsfldD78n-DxIkPS88w3uzVB'); //Tìm thư mục đến
     target = checkCreateFolder(name,parentFolder)
     //  var target = target2.createFolder(name) //Tạo thư mục Gốc
     //var target = target2.getFolders();
@@ -60,14 +60,8 @@ function copyFolder(source, target) {
     while(folders.hasNext()) {
         var subFolder = folders.next();
         var folderName = subFolder.getName();
-        var fileExist = subFolder.getFoldersByName(folderName);
-        if (fileExist === true) {
-            console.log("already exist Floder");
-        }
-        else{
-            var targetFolder = target.createFolder(folderName);
-            copyFolder(subFolder, targetFolder);
-        }
+        var targetFolder = checkCreateFolder(folderName,target);
+        copyFolder(subFolder, targetFolder);
     }
     
 }
